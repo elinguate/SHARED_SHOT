@@ -17,6 +17,8 @@ public class SandboxProjectile : MonoBehaviour
     public GameObject m_HitParticles;
     public GameObject m_HitDecalProjector;
 
+    public GameObject m_DPSCalc;
+
     public void Initialize(SandboxGun _gun, float _speed, int _damage, bool _isCrit, float _immediateStep)
     {
         m_AttachedGun = _gun;
@@ -26,6 +28,8 @@ public class SandboxProjectile : MonoBehaviour
         m_IsCritical = _isCrit;
 
         Process(_immediateStep);
+
+        m_DPSCalc = GameObject.Find("DPS Display");
     }
 
     private void Process(float _dT)
@@ -37,7 +41,8 @@ public class SandboxProjectile : MonoBehaviour
             CharacterHealth hitHealth = hit.transform.GetComponent<CharacterHealth>();
             if (hitHealth)
             {
-                hitHealth.TakeDamage(m_Damage, m_IsCritical, hit.point, hit.normal); 
+                hitHealth.TakeDamage(m_Damage, m_IsCritical, hit.point, hit.normal);
+                m_DPSCalc.GetComponent<DPSCalc>().AddDamage(m_Damage);
                 m_AttachedGun.RegisterHit();
             }
             else
