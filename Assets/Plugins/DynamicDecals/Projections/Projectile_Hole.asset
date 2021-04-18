@@ -1,0 +1,52 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf5f969f960bef8449fee2204a37e5a3, type: 3}
+  m_Name: Projectile_Hole
+  m_EditorClassIdentifier: 
+  type: 0
+  instanced: 0
+  forceForward: 0
+  priority: 0
+  transparencyType: 1
+  cutoff: 0.01
+  tiling: {x: 0, y: 0}
+  offset: {x: 0, y: 0}
+  maskMethod: 0
+  masks: 00000000
+  projectionLimit: 80
+  _Cutoff: 16
+  _TilingOffset: 635
+  _MaskBase: 633
+  _MaskLayers: 634
+  albedo:
+    texture: {fileID: 2800000, guid: 4038aa8f0a3233d4bac658a82ef98a43, type: 3}
+    color: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+    _MainTex: 1
+    _Color: 11
+  metallic:
+    texture: {fileID: 0}
+    metallicity: 0
+    glossiness: 0.365
+    _MetallicGlossMap: 294
+    _Metallic: 293
+    _Glossiness: 249
+  normal:
+    texture: {fileID: 2800000, guid: d491ab003ab57684a9c11f1ca280de82, type: 3}
+    strength: 1
+    _BumpMap: 17
+    _BumpScale: 259
+  emissive:
+    texture: {fileID: 0}
+    color: {r: 0, g: 0, b: 0, a: 1}
+    intensity: 1
+    _EmissionMap: 273
+    _EmissionColor: 131
