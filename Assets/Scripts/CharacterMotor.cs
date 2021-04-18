@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CharacterMotor : MonoBehaviour
 {
@@ -13,6 +14,11 @@ public class CharacterMotor : MonoBehaviour
     private float m_GroundedTimer = 0.0f;
 
     private float m_HeadBumpTimer;
+
+
+    [Header("DebugUI")]
+    public bool showDebugPosition = false;
+    public Text m_ShowPos;
 
     private void Update()
     {
@@ -45,7 +51,7 @@ public class CharacterMotor : MonoBehaviour
 
         m_Velocity.y = cacheY;
         m_Velocity.y -= m_Data.m_Gravity * Time.deltaTime;
-        
+
         Vector3 trueVelocity = m_Velocity;
         trueVelocity.x *= m_Data.m_MoveSpeed;
         trueVelocity.z *= m_Data.m_MoveSpeed;
@@ -63,8 +69,21 @@ public class CharacterMotor : MonoBehaviour
         m_HeadBumpTimer -= Time.deltaTime;
         if (m_HeadBumpTimer < 0.0f && headCollision)
         {
-            m_Velocity.y = -0.5f;    
-            m_HeadBumpTimer = m_Data.m_HeadBumpCooldown;    
+            m_Velocity.y = -0.5f;
+            m_HeadBumpTimer = m_Data.m_HeadBumpCooldown;
         }
+
+        UpdateUI();
+    }
+
+    private void UpdateUI()
+    {
+        /*
+         * UI to Show the players current velocity, Postion and Rotation.
+         * Toggleable with the ShowDebugPostion in UI
+         */
+        m_ShowPos.enabled = showDebugPosition ? true : false;
+        string UIText = "WorldPos: " + transform.position.ToString() + "\nVelocity: " + m_Velocity.ToString() + "\nRotation: " + m_Look.transform.forward;
+        m_ShowPos.text = UIText;
     }
 }
