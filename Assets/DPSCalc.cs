@@ -12,6 +12,8 @@ public class DPSCalc : MonoBehaviour
 
     float lastUpdate = 0;
 
+    public float resetTime = 1.0f;
+
     public Text m_DPSDisplay;
 
     // Start is called before the first frame update
@@ -23,7 +25,7 @@ public class DPSCalc : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Time.time > lastUpdate + 1.0f)
+        if (Time.time > lastUpdate + resetTime)
         {
             startTime = Time.time;
             damageDone = 0;
@@ -36,6 +38,9 @@ public class DPSCalc : MonoBehaviour
         lastUpdate = Time.time;
         damageDone += _dmg;
 
-        m_DPSDisplay.text = "DPS: " + (int)(damageDone / (Time.time - startTime));
+        float val = (damageDone / (Time.time - startTime));
+        string toDisp = (val) < 0 ? "0" : (Mathf.Round(val * 100f) / 100f).ToString();
+
+        m_DPSDisplay.text = "DPS: " + toDisp;
     }
 }
