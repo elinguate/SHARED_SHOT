@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class GunADS : MonoBehaviour
 {
-    public SandboxGun gun;
+    public SandboxGunData gun;
     public Camera maincamera;
     public CharacterMotorData MotorData;
+
+    float originalspread;
     // Start is called before the first frame update
     void Start()
     {
-        
+        originalspread = gun.m_SpreadAngle;
     }
 
     // Update is called once per frame
@@ -20,11 +22,13 @@ public class GunADS : MonoBehaviour
         {
             maincamera.fieldOfView = 50;
             MotorData.m_MoveSpeed = 3;
+            gun.m_SpreadAngle /= 5;
         }
         else
         {
             maincamera.fieldOfView = 100;
             MotorData.m_MoveSpeed = 12;
+            gun.m_SpreadAngle = originalspread;
         }
     }
 }
